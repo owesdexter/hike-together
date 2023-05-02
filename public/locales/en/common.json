@@ -1,0 +1,20 @@
+{
+  "__t_title": "ACE Exchange",
+  "__t_latest_price": "Current Price",
+  "__t_change_rate": "Quote change",
+  "__t_base_volume": "24h Volume ({{target}})",
+  "__t_trade_title": "{{ctRelString}} | {{lastPrice}} | ACE Exchange",
+  "__t_trade_description": "Price of {{target}} is ${{lastPrice}} per {{base}}. The 24h volume is {{baseVolume}} ({{target}}), 24h rate {{changeRate}} ％. Click to check {{detail}}",
+  "__t_trade_keywords": "trend,exchange rate, conversion, quote change, price, volume, high",
+  "__t_no_exist_ctRel_trade_title": "{{ctRelString}} | Current Price | ACE Exchange",
+  "__t_no_exist_trade_description": "Check current price, quote change and volume of ${ctRelString}.",
+  "__t_Bitcoin": "Bitcoin",
+  "__t_Ethereum": "Ethereum",
+  "__t_Tether": "Tether",
+  "__t_Stable_Token": "Stable coin",
+  "__t_Solana": "Solana",
+  "__t_DOGE": "Doge coin",
+  "__t_Binance_Coin": "Binance coin",
+  "__t_SHIB": "Shiba",
+  "__t_AVAX": "Avalanche"
+}

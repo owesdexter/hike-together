@@ -1,0 +1,20 @@
+{
+  "__t_title": "王牌虚拟货币交易所",
+  "__t_latest_price": "即时价格",
+  "__t_change_rate": "涨跌幅",
+  "__t_base_volume": "24h 交易量 ({{target}})",
+  "__t_trade_title": "{{ctRelString}} | {{lastPrice}} | 王牌虚拟货币交易所",
+  "__t_trade_description": "{{target}} 的即时价格是每 {{target}} ${{lastPrice}} {{base}}，24 小时交易量为 {{baseVolume}} {{target}}，涨跌幅为 {{changeRate}} ％。点击查看{{detail}}",
+  "__t_trade_keywords": "走势,汇率,换算,涨跌幅,价格,成交额,高价",
+  "__t_no_exist_ctRel_trade_title": "{{ctRelString}} | 即时价格 | 王牌虚拟货币交易所",
+  "__t_no_exist_ctRel_trade_description": "点击查看 {{ctRelString}} {{detail}}",
+  "__t_Bitcoin": "比特币",
+  "__t_Ethereum": "以太币",
+  "__t_Tether": "泰达币",
+  "__t_Stable_Token": "稳定币",
+  "__t_Solana": "Solana 币",
+  "__t_DOGE": "狗狗币",
+  "__t_Binance_Coin": "币安币",
+  "__t_SHIB": "柴犬币",
+  "__t_AVAX": "雪崩币"
+}
