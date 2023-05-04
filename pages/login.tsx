@@ -1,52 +1,76 @@
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Button, Form } from "react-bootstrap";
 import { LINE_AUTH_ID } from "@/config/line";
+import { Input } from "@/components/form/input";
+import { useTranslation } from "next-i18next";
+import { HandleChangeType } from "@/types";
+import { generateRandomAlphaNumeric } from "@/utils";
+import Joi from "joi";
 
-const randomAlphaNumeric = () => {
-  const RANDOM_STRING_LENGTH = 7;
-  let s = "";
-  Array.from({ length: RANDOM_STRING_LENGTH }).some(() => {
-    s += Math.random().toString(36).slice(2);
-    return s.length >= RANDOM_STRING_LENGTH;
-  });
-  return s.slice(0, RANDOM_STRING_LENGTH);
+type TProps = {};
+
+const initInputValues = {
+  account: "",
+  password: "",
 };
 
-export default function Login() {
-  const randomString = useMemo(() => randomAlphaNumeric(), []);
+export default function Login({}: TProps) {
+  const [values, setValues] = useState({ initInputValues });
+  const randomString = useMemo(() => generateRandomAlphaNumeric(), []);
+  const { t } = useTranslation("common");
+
   const handleLINELogin = () => {
     window.location.replace(
       `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${LINE_AUTH_ID}&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Flogin&state=${randomString}&scope=profile`
     );
-    // console.log(`LINELogin ${randomAlphaNumeric()}`);
   };
 
-  const handleEmailLogin = (e: any) => {
-    e.preventDefault();
-    console.log(`handleEmailLogin`, e);
+  const schema = Joi.object({
+    account: Joi.string()
+      .required()
+      .email({ tlds: { allow: false } }), // Fix Bug: https://github.com/hapijs/joi/issues/2390
+    password: Joi.string()
+      .required()
+      .alphanum()
+      .messages({ "any.required": "HIHI" }),
+  });
+
+  const getData = (e: any) => {
+    console.log(e.target.value);
+  };
+
+  const handleChange = ({ name, value }: HandleChangeType<string>) => {
+    const valid = schema.validate({ ...values, [name]: value });
+    console.log(valid);
   };
 
   return (
     <>
-      <Form onSubmit={handleEmailLogin}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
+      <Form>
+        <Input
+          name="account"
+          label={t("__t_Email")}
+          defaultValue=""
+          type="email"
+          placeholder="Enter mail"
+          errors={t("Please enter account")}
+          onChange={handleChange}
+        />
+        <Input
+          name="password"
+          label={t("__t_Password")}
+          defaultValue=""
+          type="password"
+          placeholder="Password"
+          errors={t("Please enter account")}
+          onChange={handleChange}
+        />
+        <Button variant="outline" type="submit" onClick={getData}>
           Register
         </Button>
       </Form>
       <Button variant="primary" onClick={handleLINELogin}>
         LINE
-      </Button>
-      <Button variant="outline" onClick={handleEmailLogin}>
-        Register
       </Button>
     </>
   );
